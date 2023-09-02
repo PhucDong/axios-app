@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BASE_URL } from "./app/config";
+import apiService from "./app/apiService";
 
 function App() {
+  // console.log(6, apiService());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await apiService.post("/api/register", {
+          email: "eve.holt@reqres.in",
+          password: "pistol",
+        });
+        console.log(15, response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Axios</h1>
     </div>
   );
 }
